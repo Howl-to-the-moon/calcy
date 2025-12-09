@@ -1,3 +1,97 @@
+body{
+    
+    margin: 0;
+    padding: 0;
+    background-color: #EDDDD4;
+}
+
+
 #guava {
     color: red;
+}
+
+
+.header{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: lightcoral;
+    color: #C44536;
+    padding: 10px 0px;
+    font-size: 40px;
+    margin-bottom: 27px;
+}
+
+
+.calculator{
+    margin-bottom: 300px;
+}
+
+
+
+.flexV{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.flexH{
+    display: flex;
+}
+
+.calcDisplay{
+    border: 5px solid #283D3B;
+    background-color: white;
+    color: #283D3B;
+    display: flex;
+    align-items: center;
+    font-size: 60px;
+    font-weight: 600;
+    padding-left: 20px;
+    width: 500px;
+    height: 50px;
+    margin: 20px 0px;
+}
+
+.calcNum{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 500px;
+    
+}
+
+.calcSym{
+    margin-left: 30px;
+    gap: 20px;
+}
+
+.calcButton{
+    width: 75px;
+    height: 75px;
+    font-size: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    padding: 10px;
+    margin: 5px;
+    color: #772E25;
+}
+
+
+.footer{
+    display: flex;
+    justify-content: center;
+    margin-top: auto;
+    background-color: #197278;
+    padding: 20px 0px;
+}
+
+.empty{
+    width: 67px;
+    height: 75px;
+    padding: 10px;
+    
 }

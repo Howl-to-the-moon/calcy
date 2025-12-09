@@ -57,3 +57,25 @@ let secondNum = 0;
 let operator = '';
 
 operate(20, 5, '+');
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
