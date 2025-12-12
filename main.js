@@ -44,8 +44,29 @@ switch (operator) {
 };
 
 
+function getNum (button) {
+
+    if (parseInt(button.textContent) == NaN ) {
+        // bullshit code to add the symbol 
+        isSwap = true;
+        return;
+    }
+
+    if (firstNum == 0) {
+        firstNum = button.textContent;
+    } else {
+    firstNum += button.textContent;
+    }
+    console.log (button.textContent);
+    console.log (firstNum);
+
+    //equal sign will do the operate function
+    //clear will set everything to 0
+
+}
 
 
+//event stuff og
 
 
 
@@ -54,9 +75,12 @@ switch (operator) {
 
 let firstNum = 0;
 let secondNum = 0;
+let isSwap = false;
 let operator = '';
 
 operate(20, 5, '+');
+
+
 
 
 
