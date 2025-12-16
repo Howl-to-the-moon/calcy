@@ -1,4 +1,6 @@
-console.log("glub"); //HES BACK BABY
+//   | RIP GLUB AGAIN 2025-2025 "glub" |
+
+
 
 
 //these four do the calculations, ezy pzy
@@ -20,91 +22,101 @@ function divide (a, b) {
 };
 
 
-function operate (numOne, numTwo, operator) {
-
-    
-   //does the functions based on the operator, and returns the value
-   //to total
+//does the functions based on the operator, and returns the value to total (in calculate)
    
 
-switch (operator) {
 
-    case '+':
-        console.log(add(numOne, numTwo));
-        return add(numOne, numTwo);
+function operate (numOne, numTwo, operator) 
+{
+
+    
+   
+   //switch case to do each of the operations
+
+    switch (operator) 
+    {
+
+        case '+':
+            return add(numOne, numTwo);
     
 
-    case '-':
-        console.log(subtract(numOne, numTwo));
-    return subtract(numOne, numTwo);
+        case '-':
+            return subtract(numOne, numTwo);
 
-    case '*':
-        console.log(multiply(numOne, numTwo));
-    return multiply(numOne, numTwo);
+        case '*':
+            return multiply(numOne, numTwo);
 
-    case '/':
-        console.log(divide(numOne, numTwo));
-    return divide(numOne, numTwo);
+        case '/':
+            return divide(numOne, numTwo);
 
-    default:
-        console.log('huh');
-    break;
-}
+        default:
+            console.log('huh');
+        break;
+    };
 
 };
 
-// you know you can /* */ right
-// YEAH SHUT UP
 
 
-//i'm not sure why i made these two seperate ones but i did
+/* 
+builds the first num
+parse float with the `${}` to make sure floats are supported, and we can append to the end of it
+display displays the display number in the display 
+*/
 
-//also uh  builds the numbers yadda yadda. also displays them.
-function buildFirst(num) {
+
+
+
+function buildFirst(num) 
+{
     
      firstNum += `${parseFloat(num)}`;
      display.value = firstNum;
-     console.log(firstNum);
      return;
 }
 
-//so what does this one do I DUNNO
-function buildSecond(num) {
+/* 
+so like. does the same as buildFirst but with a secret inside
+*/
+function buildSecond(num) 
+{
 
     
-    
-    if (onARoll == true) {
-    secondNum = '';
-    isSwap = '';
-    operator = '';
-    total = '';
-    display.value = '';
-    onARoll =  false;
-    buildFirst(num);
-    return;
+    //minature clearCalc to fresh everything and make appending to buildFirst after an equation possible, based on appendFirst
+    if (appendFirst == true) 
+    {
+        secondNum = '';
+        isSwap = '';
+        operator = '';
+        total = '';
+        display.value = '';
+        appendFirst =  false;
+        buildFirst(num);
+        return;
     }
     
     
     
 
-     secondNum += parseFloat(num);
+    secondNum += parseFloat(num);
     display.value = `${firstNum} ${operator} ${secondNum}`;
-     console.log(secondNum);
+     
 }
 
 
 
 
 
-//i looked up inline button stuff and i think this is the easiest
-//way to not end up giving each button their own ids and values
+//build on da one or da two based on isSwap
+function getNum (button) 
+{
 
-//oh also an if so it doesn't keep stacking on one
-function getNum (button) {
-
-    if (isSwap == false) {
+    if (isSwap == false) 
+    {
         buildFirst(button.textContent)
-    } else {
+    } 
+    else 
+    {
         buildSecond(button.textContent)
     }
 
@@ -112,26 +124,30 @@ function getNum (button) {
 
 
 
-//gets operator and switches permanently to second number building.
+/* 
 
-//needs workshopping for odins project shit so
-//i need to focus here tmmrw
-function getSymbol (symbol) {
+the if just gets the symbol, switches to second number, and keeps it from appending to first via appendFirst
 
-    if (isNext == false){
-    operator = symbol.textContent;
-    console.log(operator);
-    display.value = `${firstNum} ${operator}`;
-    isNext = true;
-    onARoll = false;
-    return isSwap = true;
-    } else {
+*/
+
+function getSymbol (symbol) 
+{
+
+    if (isNext == false)
+    {
+        operator = symbol.textContent;
+        display.value = `${firstNum} ${operator}`;
+        isNext = true;
+        appendFirst = false;
+        return isSwap = true;
+    } 
+    else 
+    {
         calculate();
         operator = symbol.textContent;
-        console.log(operator);
         display.value = `${firstNum} ${operator}`;
         isSwap = true;
-        onARoll = false;
+        appendFirst = false;
         return isNext = true;
     }
 
@@ -141,40 +157,56 @@ function getSymbol (symbol) {
 //the good shit. calulates. maybe make it round at some point.
 //edit: made it round like 2 seconds later
 
-function calculate () {
-    if ( secondNum == '' || operator == '') {
-        return;
-    }
-        
+function calculate () 
+{
+
+    //prevents typing if you try to spam operator or click '=' before actually making an equation
+    if ( secondNum == '' || operator == '') 
+        {
+            return;
+        }
+
+
+    //idk either
     firstNum = parseFloat(firstNum);
     secondNum = parseFloat(secondNum);
-    console.table(firstNum, secondNum, operator);
+    
     total = operate(firstNum, secondNum, operator);
 
-    if (total > 9999999999999 || (firstNum == 0 && secondNum == 0)) {
-        clearCalc();
-        display.value = 'uhuh. funny.';
-        total = 0;
 
-    } else if (total % 1 != 0) {
-        total = Math.round(total * 1000) / 1000;
-        display.value = total;
-    } else {
-    display.value = total;
-    };
+    //exception handlrss. no dividing by 0, rounds by three decimal places, makes total display and sets it to first num and alll dat
+
+    if (total > 9999999999999 || (firstNum == 0 && secondNum == 0)) 
+        {
+            clearCalc();
+            display.value = 'uhuh. funny.';
+            total = 0;
+        } 
+        else if (total % 1 != 0) 
+        {
+            total = Math.round(total * 1000) / 1000;
+            display.value = total;
+        } 
+        else 
+        {
+            display.value = total;
+        };
+        
+
+    //ands sets this up for next equation
     firstNum = total;
-    console.log(firstNum);
     secondNum = '';
-    onARoll = true;
+    appendFirst = true;
     
 }
 
 // ERASES ALL TO OBLITERATED NOTHING.
 //kinda wanna make a clear condition of first killing the current 
 //number (ie a backspace of sorts), and when clicked a second time 
-//does the full wipe.
+//does the full wipe. will do this latrrrr 12/16
 
-function clearCalc () {
+function clearCalc () 
+{
 
     firstNum = '';
     secondNum = '';
@@ -182,15 +214,14 @@ function clearCalc () {
     operator = '';
     total = '';
     display.value = '';
-
+    appendFirst = false;
+    isSwap = false;
+    isNext = false;
 
 }
 
 
-// in the homestretch now. just need another varibale and a function
-// or two to meet the requirments of the project. (the if you click
-// an operator after already having a second number, it preforms
-// the operate() immeaditly)
+//go my beauitful variables
 
 
 let firstNum = '';
@@ -198,10 +229,7 @@ let secondNum = '';
 let operator = '';
 let isSwap = false;
 let isNext = false;
-let onARoll = false;
-
-//event stuff og
-
+let appendFirst = false;
 display = document.querySelector(".calcDisplay");
 
 
@@ -209,7 +237,7 @@ display = document.querySelector(".calcDisplay");
 
 
 
-// variables past here
+// variables past here BWHAHA WHAT A JOKE
 
 
 
