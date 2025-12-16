@@ -18,6 +18,8 @@ function divide (a, b) {
 
 function operate (numOne, numTwo, operator) {
 
+   
+
 switch (operator) {
 
     case '+':
@@ -43,43 +45,71 @@ switch (operator) {
 
 };
 
+function buildFirst(num) {
+     firstNum += num;
+     console.log(firstNum);
+}
 
-function getNum (button) {
-
-    if (parseInt(button.textContent) == NaN ) {
-        // bullshit code to add the symbol 
-        isSwap = true;
-        return;
-    }
-
-    if (firstNum == 0) {
-        firstNum = button.textContent;
-    } else {
-    firstNum += button.textContent;
-    }
-    console.log (button.textContent);
-    console.log (firstNum);
-
-    //equal sign will do the operate function
-    //clear will set everything to 0
-
+function buildSecond(num) {
+     secondNum += num;
+     console.log(secondNum);
 }
 
 
+
+
+
+
+function getNum (button) {
+
+    if (isSwap == false) {
+        buildFirst(button.textContent)
+    } else {
+        buildSecond(button.textContent)
+    }
+
+}
+
+function getSymbol (symbol) {
+
+    operator = symbol.textContent;
+    console.log(operator);
+    return isSwap = true;
+
+}
+
+function calculate () {
+    firstNum = parseInt(firstNum);
+    secondNum = parseInt(secondNum);
+    console.table(firstNum, secondNum, operator);
+    operate(firstNum, secondNum, operator);
+}
+
+//
+
+
+
+
+let firstNum = '';
+let secondNum = '';
+let isSwap = false;
+let operator = '';
+
+
 //event stuff og
+
+display = document.querySelector(".calcDisplay");
+
+display.value = firstNum;
 
 
 
 
 // variables past here
 
-let firstNum = 0;
-let secondNum = 0;
-let isSwap = false;
-let operator = '';
+
 
 operate(20, 5, '+');
-
 
 
 
