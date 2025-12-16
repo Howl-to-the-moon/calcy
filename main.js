@@ -62,14 +62,32 @@ switch (operator) {
 //also uh  builds the numbers yadda yadda. also displays them.
 function buildFirst(num) {
     
-     firstNum += parseInt(num);
+     firstNum += `${parseFloat(num)}`;
      display.value = firstNum;
      console.log(firstNum);
+     return;
 }
 
 //so what does this one do I DUNNO
 function buildSecond(num) {
-     secondNum += parseInt(num);
+
+    
+    
+    if (onARoll == true) {
+    secondNum = '';
+    isSwap = '';
+    operator = '';
+    total = '';
+    display.value = '';
+    onARoll =  false;
+    buildFirst(num);
+    return;
+    }
+    
+    
+    
+
+     secondNum += parseFloat(num);
     display.value = `${firstNum} ${operator} ${secondNum}`;
      console.log(secondNum);
 }
@@ -105,6 +123,7 @@ function getSymbol (symbol) {
     console.log(operator);
     display.value = `${firstNum} ${operator}`;
     isNext = true;
+    onARoll = false;
     return isSwap = true;
     } else {
         calculate();
@@ -112,6 +131,7 @@ function getSymbol (symbol) {
         console.log(operator);
         display.value = `${firstNum} ${operator}`;
         isSwap = true;
+        onARoll = false;
         return isNext = true;
     }
 
@@ -122,24 +142,30 @@ function getSymbol (symbol) {
 //edit: made it round like 2 seconds later
 
 function calculate () {
-    if ( firstNum == '' || secondNum == '' || operator == '') {
+    if ( secondNum == '' || operator == '') {
         return;
     }
-    firstNum = parseInt(firstNum);
-    secondNum = parseInt(secondNum);
+        
+    firstNum = parseFloat(firstNum);
+    secondNum = parseFloat(secondNum);
     console.table(firstNum, secondNum, operator);
     total = operate(firstNum, secondNum, operator);
 
-    if (total > 9999999999999) {
-        display.value = 'error, please C/A';
+    if (total > 9999999999999 || (firstNum == 0 && secondNum == 0)) {
+        clearCalc();
+        display.value = 'uhuh. funny.';
+        total = 0;
+
     } else if (total % 1 != 0) {
-        total = Math.round(total);
+        total = Math.round(total * 1000) / 1000;
         display.value = total;
     } else {
     display.value = total;
     };
     firstNum = total;
+    console.log(firstNum);
     secondNum = '';
+    onARoll = true;
     
 }
 
@@ -172,6 +198,7 @@ let secondNum = '';
 let operator = '';
 let isSwap = false;
 let isNext = false;
+let onARoll = false;
 
 //event stuff og
 
