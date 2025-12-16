@@ -70,7 +70,7 @@ function buildFirst(num) {
 //so what does this one do I DUNNO
 function buildSecond(num) {
      secondNum += parseInt(num);
-    display.value = secondNum;
+    display.value = `${firstNum} ${operator} ${secondNum}`;
      console.log(secondNum);
 }
 
@@ -93,16 +93,27 @@ function getNum (button) {
 }
 
 
+
 //gets operator and switches permanently to second number building.
 
 //needs workshopping for odins project shit so
 //i need to focus here tmmrw
 function getSymbol (symbol) {
 
+    if (isNext == false){
     operator = symbol.textContent;
     console.log(operator);
-    display.value = operator;
+    display.value = `${firstNum} ${operator}`;
+    isNext = true;
     return isSwap = true;
+    } else {
+        calculate();
+        operator = symbol.textContent;
+        console.log(operator);
+        display.value = `${firstNum} ${operator}`;
+        isSwap = true;
+        return isNext = true;
+    }
 
 }
 
@@ -158,9 +169,9 @@ function clearCalc () {
 
 let firstNum = '';
 let secondNum = '';
-let isSwap = false;
 let operator = '';
-
+let isSwap = false;
+let isNext = false;
 
 //event stuff og
 
